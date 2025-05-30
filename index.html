@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VortiqX - Banking Vulnerability Scanner</title>
+</head>
+<body>
+  <h1>VortiqX Scanner</h1>
+  <input type="text" id="urlInput" placeholder="Enter URL to scan">
+  <button onclick="startScan()">Start Scan</button>
+  <pre id="results"></pre>
+
+  <script>
+    async function startScan() {
+      const url = document.getElementById('urlInput').value;
+      const res = await fetch(`https://your-service-name.onrender.com/api/scan?url=${encodeURIComponent(url)}`);
+      const data = await res.json();
+      document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
