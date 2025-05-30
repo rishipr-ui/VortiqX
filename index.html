@@ -14,10 +14,12 @@
   <script>
     async function startScan() {
       const url = document.getElementById('urlInput').value;
-      const res = await fetch(`https://your-service-name.onrender.com/api/scan?url=${encodeURIComponent(url)}`);
+      const res = await fetch(`https://vortiqx.onrender.com/api/scan?url=${encodeURIComponent(url)}`);
+
       const data = await res.json();
       document.getElementById('results').textContent = JSON.stringify(data, null, 2);
     }
   </script>
 </body>
 </html>
+
