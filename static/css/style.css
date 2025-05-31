@@ -1,0 +1,467 @@
+/* Custom CSS Variables - Black and White Theme */
+:root {
+    --bg-primary: 0 0% 100%;        /* #FFFFFF */
+    --bg-secondary: 0 0% 98%;       /* #FAFAFA */
+    --bg-dark: 0 0% 13%;            /* #212121 */
+    --text-primary: 0 0% 13%;       /* #212121 */
+    --text-secondary: 0 0% 40%;     /* #666666 */
+    --text-muted: 0 0% 60%;         /* #999999 */
+    --border-color: 0 0% 87%;       /* #DDDDDD */
+    --shadow-light: 0 0% 0% / 0.05;
+    --shadow-medium: 0 0% 0% / 0.1;
+    --shadow-heavy: 0 0% 0% / 0.15;
+}
+
+/* Base Styles */
+body {
+    background-color: hsl(var(--bg-secondary));
+    color: hsl(var(--text-primary));
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 200px);
+}
+
+/* Icons */
+.icon-xs {
+    width: 14px;
+    height: 14px;
+}
+
+.icon-sm {
+    width: 18px;
+    height: 18px;
+}
+
+.hero-icon {
+    width: 80px;
+    height: 80px;
+    stroke-width: 1;
+    color: hsl(var(--text-primary));
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%);
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Scan Form */
+.scan-form-container {
+    margin-bottom: 4rem;
+}
+
+.card {
+    border: 1px solid hsl(var(--border-color));
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: 1px solid hsl(var(--border-color));
+    background-color: hsl(var(--bg-dark)) !important;
+    padding: 1.25rem 1.5rem;
+}
+
+.card-body {
+    background-color: hsl(var(--bg-primary));
+}
+
+/* Form Elements */
+.form-control {
+    border: 2px solid hsl(var(--border-color));
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: hsl(var(--bg-dark));
+    box-shadow: 0 0 0 0.2rem hsla(var(--bg-dark) / 0.25);
+}
+
+.input-group-text {
+    border: 2px solid hsl(var(--border-color));
+    background-color: hsl(var(--bg-secondary));
+    border-right: none;
+}
+
+.input-group .form-control {
+    border-left: none;
+}
+
+/* Buttons */
+.btn-dark {
+    background-color: hsl(var(--bg-dark));
+    border-color: hsl(var(--bg-dark));
+    color: white;
+    border-radius: 8px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-dark:hover {
+    background-color: hsl(0 0% 8%);
+    border-color: hsl(0 0% 8%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsla(var(--shadow-medium));
+}
+
+.btn-outline-dark {
+    border: 2px solid hsl(var(--bg-dark));
+    color: hsl(var(--bg-dark));
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-dark:hover {
+    background-color: hsl(var(--bg-dark));
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Feature Items */
+.scan-options {
+    border-top: 1px solid hsl(var(--border-color));
+    padding-top: 1.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.feature-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    color: hsl(var(--text-secondary));
+}
+
+/* Security Info Cards */
+.security-info {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.security-card {
+    background: hsl(var(--bg-primary));
+    border: 1px solid hsl(var(--border-color));
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+    height: 100%;
+}
+
+.security-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px hsla(var(--shadow-medium));
+    border-color: hsl(var(--bg-dark));
+}
+
+.security-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    color: hsl(var(--text-primary));
+    stroke-width: 1.5;
+}
+
+.security-card h5 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: hsl(var(--text-primary));
+}
+
+.security-card p {
+    color: hsl(var(--text-secondary));
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* Results Page */
+.results-header {
+    padding: 2rem 0;
+    border-bottom: 2px solid hsl(var(--border-color));
+}
+
+/* Summary Cards */
+.summary-card {
+    background: hsl(var(--bg-primary));
+    border: 1px solid hsl(var(--border-color));
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    margin-bottom: 1rem;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(var(--shadow-light));
+}
+
+.summary-card-total .summary-icon {
+    color: hsl(var(--text-primary));
+}
+
+.summary-card-high .summary-icon {
+    color: #dc3545;
+}
+
+.summary-card-medium .summary-icon {
+    color: #fd7e14;
+}
+
+.summary-card-low .summary-icon {
+    color: #0dcaf0;
+}
+
+.summary-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.75rem;
+}
+
+.summary-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: hsl(var(--text-primary));
+}
+
+.summary-content p {
+    color: hsl(var(--text-secondary));
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* Vulnerability Sections */
+.vulnerability-section {
+    background: hsl(var(--bg-primary));
+    border: 1px solid hsl(var(--border-color));
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px hsla(var(--shadow-light));
+}
+
+.section-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid hsl(var(--border-color));
+}
+
+.section-header h4 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.vulnerabilities-list {
+    padding: 0;
+}
+
+.vulnerability-item {
+    border-bottom: 1px solid hsl(var(--border-color));
+    padding: 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.vulnerability-item:last-child {
+    border-bottom: none;
+}
+
+.vulnerability-item:hover {
+    background-color: hsl(var(--bg-secondary));
+}
+
+.vulnerability-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.vulnerability-title {
+    font-weight: 700;
+    color: hsl(var(--text-primary));
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.vulnerability-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.vulnerability-content {
+    color: hsl(var(--text-secondary));
+}
+
+.vulnerability-description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.solution-box {
+    background: hsl(var(--bg-secondary));
+    border: 1px solid hsl(var(--border-color));
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.solution-box h6 {
+    color: hsl(var(--text-primary));
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.solution-box p {
+    margin-bottom: 0;
+    color: hsl(var(--text-secondary));
+}
+
+/* Code Elements */
+code {
+    background-color: hsl(var(--bg-secondary));
+    color: hsl(var(--text-primary));
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid hsl(var(--border-color));
+}
+
+/* Badges */
+.badge {
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 6px;
+}
+
+/* Footer */
+.footer {
+    background-color: hsl(var(--bg-dark)) !important;
+    border-top: 1px solid hsl(var(--border-color));
+}
+
+/* Navbar */
+.navbar-dark {
+    background-color: hsl(var(--bg-dark)) !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Alerts */
+.alert {
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d1edff;
+    color: #0f5132;
+    border: 1px solid hsl(var(--border-color));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .hero-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .vulnerability-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .summary-card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Loading States */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus States */
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid hsl(var(--bg-dark));
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .card,
+    .vulnerability-section {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+}
