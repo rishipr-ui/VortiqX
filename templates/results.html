@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Scan Results - {{ url }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Results Header -->
+    <div class="results-header mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-6 fw-bold mb-2">
+                    <i data-feather="shield" class="me-2"></i>
+                    Security Scan Results
+                </h1>
+                <p class="lead mb-0">
+                    <i data-feather="globe" class="icon-sm me-2"></i>
+                    <strong>Target:</strong> <code>{{ url }}</code>
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="{{ url_for('index') }}" class="btn btn-outline-dark">
+                    <i data-feather="arrow-left" class="icon-sm me-2"></i>
+                    New Scan
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="summary-card summary-card-total">
+                <div class="summary-icon">
+                    <i data-feather="file-text"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>{{ total_alerts }}</h3>
+                    <p>Total Issues</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card summary-card-high">
+                <div class="summary-icon">
+                    <i data-feather="alert-circle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>{{ results.High|length }}</h3>
+                    <p>High Risk</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card summary-card-medium">
+                <div class="summary-icon">
+                    <i data-feather="alert-triangle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>{{ results.Medium|length }}</h3>
+                    <p>Medium Risk</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="summary-card summary-card-low">
+                <div class="summary-icon">
+                    <i data-feather="info"></i>
+                </div>
+                <div class="summary-content">
+                    <h3>{{ results.Low|length + results.Informational|length }}</h3>
+                    <p>Low Risk</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Sections -->
+    {% if total_alerts == 0 %}
+        <div class="alert alert-success border-0 shadow-sm" role="alert">
+            <div class="text-center py-4">
+                <i data-feather="check-circle" style="width: 48px; height: 48px;" class="text-success mb-3"></i>
+                <h4 class="alert-heading">No Vulnerabilities Found!</h4>
+                <p class="mb-0">The security scan completed successfully with no critical vulnerabilities detected.</p>
+            </div>
+        </div>
+    {% else %}
+        <!-- High Risk Issues -->
+        {% if results.High %}
+            <div class="vulnerability-section mb-4">
+                <div class="section-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i data-feather="alert-circle" class="icon-sm me-2"></i>
+                        High Risk Issues ({{ results.High|length }})
+                    </h4>
+                </div>
+                <div class="vulnerabilities-list">
+                    {% for alert in results.High %}
+                        <div class="vulnerability-item vulnerability-high">
+                            <div class="vulnerability-header">
+                                <h5 class="vulnerability-title">{{ alert.alert }}</h5>
+                                <div class="vulnerability-meta">
+                                    <span class="badge bg-danger">{{ alert.risk }}</span>
+                                    <span class="badge bg-secondary">{{ alert.confidence }}</span>
+                                    {% if alert.cweid %}
+                                        <span class="badge bg-dark">CWE-{{ alert.cweid }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="vulnerability-content">
+                                <p class="vulnerability-description">{{ alert.description }}</p>
+                                {% if alert.url != url %}
+                                    <p><strong>URL:</strong> <code>{{ alert.url }}</code></p>
+                                {% endif %}
+                                {% if alert.param %}
+                                    <p><strong>Parameter:</strong> <code>{{ alert.param }}</code></p>
+                                {% endif %}
+                                {% if alert.evidence %}
+                                    <p><strong>Evidence:</strong> <code>{{ alert.evidence }}</code></p>
+                                {% endif %}
+                                {% if alert.solution %}
+                                    <div class="solution-box">
+                                        <h6><i data-feather="tool" class="icon-xs me-1"></i>Solution:</h6>
+                                        <p>{{ alert.solution }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Medium Risk Issues -->
+        {% if results.Medium %}
+            <div class="vulnerability-section mb-4">
+                <div class="section-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i data-feather="alert-triangle" class="icon-sm me-2"></i>
+                        Medium Risk Issues ({{ results.Medium|length }})
+                    </h4>
+                </div>
+                <div class="vulnerabilities-list">
+                    {% for alert in results.Medium %}
+                        <div class="vulnerability-item vulnerability-medium">
+                            <div class="vulnerability-header">
+                                <h5 class="vulnerability-title">{{ alert.alert }}</h5>
+                                <div class="vulnerability-meta">
+                                    <span class="badge bg-warning text-dark">{{ alert.risk }}</span>
+                                    <span class="badge bg-secondary">{{ alert.confidence }}</span>
+                                    {% if alert.cweid %}
+                                        <span class="badge bg-dark">CWE-{{ alert.cweid }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="vulnerability-content">
+                                <p class="vulnerability-description">{{ alert.description }}</p>
+                                {% if alert.url != url %}
+                                    <p><strong>URL:</strong> <code>{{ alert.url }}</code></p>
+                                {% endif %}
+                                {% if alert.param %}
+                                    <p><strong>Parameter:</strong> <code>{{ alert.param }}</code></p>
+                                {% endif %}
+                                {% if alert.evidence %}
+                                    <p><strong>Evidence:</strong> <code>{{ alert.evidence }}</code></p>
+                                {% endif %}
+                                {% if alert.solution %}
+                                    <div class="solution-box">
+                                        <h6><i data-feather="tool" class="icon-xs me-1"></i>Solution:</h6>
+                                        <p>{{ alert.solution }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Low Risk Issues -->
+        {% if results.Low or results.Informational %}
+            <div class="vulnerability-section mb-4">
+                <div class="section-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i data-feather="info" class="icon-sm me-2"></i>
+                        Low Risk & Informational Issues ({{ (results.Low|length) + (results.Informational|length) }})
+                    </h4>
+                </div>
+                <div class="vulnerabilities-list">
+                    {% for alert in results.Low + results.Informational %}
+                        <div class="vulnerability-item vulnerability-low">
+                            <div class="vulnerability-header">
+                                <h5 class="vulnerability-title">{{ alert.alert }}</h5>
+                                <div class="vulnerability-meta">
+                                    <span class="badge bg-info">{{ alert.risk }}</span>
+                                    <span class="badge bg-secondary">{{ alert.confidence }}</span>
+                                    {% if alert.cweid %}
+                                        <span class="badge bg-dark">CWE-{{ alert.cweid }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="vulnerability-content">
+                                <p class="vulnerability-description">{{ alert.description }}</p>
+                                {% if alert.url != url %}
+                                    <p><strong>URL:</strong> <code>{{ alert.url }}</code></p>
+                                {% endif %}
+                                {% if alert.param %}
+                                    <p><strong>Parameter:</strong> <code>{{ alert.param }}</code></p>
+                                {% endif %}
+                                {% if alert.evidence %}
+                                    <p><strong>Evidence:</strong> <code>{{ alert.evidence }}</code></p>
+                                {% endif %}
+                                {% if alert.solution %}
+                                    <div class="solution-box">
+                                        <h6><i data-feather="tool" class="icon-xs me-1"></i>Solution:</h6>
+                                        <p>{{ alert.solution }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="text-center mt-5">
+        <a href="{{ url_for('index') }}" class="btn btn-dark btn-lg">
+            <i data-feather="search" class="icon-sm me-2"></i>
+            Scan Another URL
+        </a>
+    </div>
+</div>
+{% endblock %}
